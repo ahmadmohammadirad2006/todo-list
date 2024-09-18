@@ -5,27 +5,47 @@
 
 @layer base {
   html {
-    @apply text-[100%] sm:text-[110%] md:text-[120%] lg:text-[130%] xl:text-[140%] 2xl:text-[150%];
+    @apply text-[90%] sm:text-[100%] md:text-[110%] lg:text-[120%] xl:text-[130%] 2xl:text-[140%];
   }
   body {
     @apply text-lg font-josefin-sans font-normal;
   }
   h1 {
-    @apply text-3xl uppercase tracking-[.6rem] text-light-very-light-gray font-medium;
+    @apply text-4xl uppercase tracking-[.8rem] text-white font-medium;
+  }
+  input {
+    @apply text-base placeholder:text-light-gray;
   }
   .app {
     @apply min-h-screen  bg-contain bg-no-repeat flex items-center justify-center;
   }
   .app.dark {
-    @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-dark-very-dark-blue text-dark-light-grayish-blue;
+    @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-very-dark-blue  text-very-light-gray;
   }
   .app.light {
-    @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-light-very-light-gray text-light-very-dark-grayish-blue;
+    @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-very-light-gray text-dark-blue;
   }
 }
 
 @layer components {
   .header {
     @apply flex justify-between items-center;
+  }
+
+  .circle {
+    @apply rounded-full border w-5 h-5 border-light-gray;
+  }
+
+  .input-group {
+    @apply flex items-center gap-5 p-4 rounded-md;
+  }
+  .dark .input-group {
+    @apply bg-dark-blue;
+  }
+  .light .input-group {
+    @apply bg-white;
+  }
+  .input-group input {
+    @apply bg-[transparent] outline-none flex-grow;
   }
 }
