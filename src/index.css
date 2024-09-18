@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  body {
+    @apply text-lg font-josefin-sans font-normal;
+  }
+  .app {
+    @apply min-h-screen  bg-contain bg-no-repeat flex items-center justify-center;
+  }
+  .app.dark {
+    @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-dark-very-dark-blue text-dark-light-grayish-blue;
+  }
+  .app.light {
+    @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-light-very-light-gray text-light-very-dark-grayish-blue;
+  }
 }
