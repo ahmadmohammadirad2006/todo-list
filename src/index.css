@@ -17,13 +17,13 @@
     @apply text-base placeholder:text-light-gray;
   }
   .app {
-    @apply min-h-screen  bg-contain bg-no-repeat flex items-center justify-center;
+    @apply min-h-screen  bg-contain bg-no-repeat pt-28 sm:pt-16;
   }
   .app.dark {
     @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-very-dark-blue  text-very-light-gray;
   }
   .app.light {
-    @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-very-light-gray text-dark-blue;
+    @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-very-light-gray text-very-dark-blue;
   }
 }
 
@@ -34,6 +34,9 @@
 
   .circle {
     @apply rounded-full border w-5 h-5 border-light-gray;
+  }
+  .circle.checked {
+    @apply bg-gradient-to-br from-blue-sky to-pink border-none;
   }
 
   .input-group {
@@ -47,5 +50,45 @@
   }
   .input-group input {
     @apply bg-[transparent] outline-none flex-grow;
+  }
+
+  .todo-item {
+    @apply flex gap-5 p-4  border-b;
+  }
+  .todo-item.completed {
+    @apply line-through text-light-gray;
+  }
+  .dark .todo-item {
+    @apply bg-dark-blue border-b-light-blue;
+  }
+  .light .todo-item {
+    @apply bg-white border-b-very-light-gray;
+  }
+
+  .actions {
+    @apply flex flex-col gap-5 text-light-gray;
+  }
+  .dark .actions button:not(.active) {
+    @apply hover:text-very-light-gray;
+  }
+  .light .actions button:not(.active) {
+    @apply hover:text-very-dark-blue;
+  }
+  .stats {
+    @apply flex justify-between items-center p-4  rounded-b-md;
+  }
+  .filters {
+    @apply flex gap-5 justify-center p-4 rounded-md;
+  }
+  .dark .filters,
+  .dark .stats {
+    @apply bg-dark-blue;
+  }
+  .light .filters,
+  .light .stats {
+    @apply bg-white;
+  }
+  .active {
+    @apply text-bright-blue;
   }
 }
