@@ -4,8 +4,14 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply text-[100%] sm:text-[110%] md:text-[120%] lg:text-[130%] xl:text-[140%] 2xl:text-[150%];
+  }
   body {
     @apply text-lg font-josefin-sans font-normal;
+  }
+  h1 {
+    @apply text-3xl uppercase tracking-[.6rem] text-light-very-light-gray font-medium;
   }
   .app {
     @apply min-h-screen  bg-contain bg-no-repeat flex items-center justify-center;
@@ -15,5 +21,11 @@
   }
   .app.light {
     @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-light-very-light-gray text-light-very-dark-grayish-blue;
+  }
+}
+
+@layer components {
+  .header {
+    @apply flex justify-between items-center;
   }
 }
