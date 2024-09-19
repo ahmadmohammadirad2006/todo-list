@@ -5,7 +5,7 @@
 
 @layer base {
   html {
-    @apply text-[90%] sm:text-[100%] md:text-[110%] lg:text-[120%] xl:text-[130%] 2xl:text-[140%];
+    @apply text-[110%] sm:text-[120%] md:text-[130%] lg:text-[140%] xl:text-[150%] 2xl:text-[160%];
   }
   body {
     @apply text-lg font-josefin-sans font-normal;
@@ -17,7 +17,7 @@
     @apply text-base placeholder:text-light-gray;
   }
   .app {
-    @apply min-h-screen  bg-contain bg-no-repeat pt-28 sm:pt-16;
+    @apply min-h-screen  bg-contain bg-no-repeat pt-24;
   }
   .app.dark {
     @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-very-dark-blue  text-very-light-gray;
@@ -33,12 +33,11 @@
   }
 
   .circle {
-    @apply rounded-full border w-5 h-5 border-light-gray;
+    @apply rounded-full border w-6 h-6 border-light-gray;
   }
-  .circle.checked {
-    @apply bg-gradient-to-br from-blue-sky to-pink border-none;
+  input[type='checkbox']:checked + .circle {
+    @apply bg-gradient-to-br from-blue-sky to-pink border-none relative after:content-['✔'] after:absolute after:text-white after:top-[2%] after:left-[20%];
   }
-
   .input-group {
     @apply flex items-center gap-5 p-4 rounded-md;
   }
@@ -66,7 +65,7 @@
   }
 
   .actions {
-    @apply text-base flex justify-between items-center mb-20 p-4 gap-5 rounded-b-md  text-light-gray relative sm:static sm:rounded-none sm:mb-0 md:text-sm;
+    @apply text-sm  flex justify-between items-center mb-20 p-4 gap-5 rounded-b-md  text-light-gray relative sm:static sm:rounded-none sm:mb-0;
   }
   .dark .actions button:not(.active) {
     @apply hover:text-very-light-gray;
@@ -75,7 +74,7 @@
     @apply hover:text-very-dark-blue;
   }
   .filters {
-    @apply flex gap-5 justify-center absolute top-20 left-0 w-full p-4 rounded-md sm:static sm:rounded-none sm:p-0 sm:w-auto;
+    @apply flex gap-5 justify-center absolute top-20 mt-2 left-0 w-full p-4 rounded-md sm:static sm:rounded-none sm:p-0 sm:w-auto;
   }
   .dark .filters,
   .dark .actions {

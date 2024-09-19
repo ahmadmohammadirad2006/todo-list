@@ -69,11 +69,8 @@ function TodoList() {
 function TodoItem({ id, completed, children }) {
   return (
     <li className={`todo-item ${completed ? 'completed' : ''}`}>
-      <label
-        className={`circle ${completed ? 'checked' : ''}`}
-        htmlFor={id}
-      ></label>
       <input type='checkbox' value={completed} id={id} className='hidden' />
+      <label className='circle' htmlFor={id}></label>
       {children}
     </li>
   );
