@@ -17,10 +17,10 @@
     @apply text-base placeholder:text-light-gray;
   }
   .app {
-    @apply min-h-screen  bg-contain bg-no-repeat pt-24;
+    @apply min-h-screen transition-all bg-contain bg-no-repeat pt-24;
   }
   .app.dark {
-    @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] sm:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-very-dark-blue  text-very-light-gray;
+    @apply bg-[url('./../public/images/bg-mobile-dark.jpg')] xl:bg-[url('./../public/images/bg-desktop-dark.jpg')] bg-very-dark-blue  text-very-light-gray;
   }
   .app.light {
     @apply bg-[url('./../public/images/bg-mobile-light.jpg')] xl:bg-[url('./../public/images/bg-desktop-light.jpg')] bg-very-light-gray text-very-dark-blue;
@@ -33,7 +33,7 @@
   }
 
   .circle {
-    @apply rounded-full border w-6 h-6 border-light-gray;
+    @apply rounded-full border w-6 h-6 border-light-gray hover:cursor-pointer;
   }
   input[type='checkbox']:checked + .circle {
     @apply bg-gradient-to-br from-blue-sky to-pink border-none relative after:content-['✔'] after:absolute after:text-white after:top-[2%] after:left-[20%];
@@ -52,9 +52,9 @@
   }
 
   .todo-item {
-    @apply flex gap-5 p-4  border-b;
+    @apply flex items-center gap-5 p-4  border-b;
   }
-  .todo-item.completed {
+  .todo-item.completed p {
     @apply line-through text-light-gray;
   }
   .dark .todo-item {
@@ -62,6 +62,12 @@
   }
   .light .todo-item {
     @apply bg-white border-b-very-light-gray;
+  }
+  .todo-item .delete-btn {
+    @apply text-light-gray font-[200] pb-2 leading-6 opacity-0 transition-all outline-none overflow-hidden ml-auto text-5xl;
+  }
+  .todo-item:hover .delete-btn {
+    @apply opacity-100;
   }
 
   .actions {

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const initialTodos = [
   {
     id: crypto.randomUUID(),
@@ -17,10 +19,16 @@ const initialTodos = [
 ];
 
 function App() {
+  const [mode, setMode] = useState('light');
+
+  function handleToggleMode() {
+    setMode((cur) => (cur === 'light' ? 'dark' : 'light'));
+  }
+
   return (
-    <main className='app dark'>
+    <main className={`app ${mode}`}>
       <div className='container flex flex-col p-5 gap-5  lg:w-[36rem]'>
-        <Header />
+        <Header mode={mode} onToggleMode={handleToggleMode} />
         <Form />
         <section className='flex flex-col rounded-md overflow-hidden'>
           <TodoList />
@@ -32,12 +40,16 @@ function App() {
   );
 }
 
-function Header() {
+function Header({ mode, onToggleMode }) {
   return (
     <header className='header'>
       <h1>Todo</h1>
-      <button>
-        <img className='w-5 h-5' src='/images/icon-sun.svg' alt='Sun icon' />
+      <button onClick={onToggleMode}>
+        <img
+          className='w-5 h-5'
+          src={`/images/icon-${mode === 'light' ? 'moon' : 'sun'}.svg`}
+          alt={`${mode === 'light' ? 'Moon' : 'Sun'} icon`}
+        />
       </button>
     </header>
   );
@@ -47,7 +59,7 @@ function Form() {
   return (
     <form>
       <div className='input-group'>
-        <span className='circle'></span>
+        <button className='circle'></button>
         <input placeholder='Create a new todo...' />
       </div>
     </form>
@@ -71,7 +83,8 @@ function TodoItem({ id, completed, children }) {
     <li className={`todo-item ${completed ? 'completed' : ''}`}>
       <input type='checkbox' value={completed} id={id} className='hidden' />
       <label className='circle' htmlFor={id}></label>
-      {children}
+      <p>{children}</p>
+      <button className='delete-btn'>&times;</button>
     </li>
   );
 }
