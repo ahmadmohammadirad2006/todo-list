@@ -1,23 +1,5 @@
 import { useState } from 'react';
 
-const initialTodos = [
-  {
-    id: crypto.randomUUID(),
-    name: 'Do coding challenge',
-    completed: true,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Practice programming',
-    completed: false,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: 'Study English',
-    completed: false,
-  },
-];
-
 function App() {
   const [todos, setTodos] = useState([]);
   const [mode, setMode] = useState('light');
@@ -30,13 +12,21 @@ function App() {
     setTodos((cur) => [...cur, todo]);
   }
 
+  function handleToggleComplete(id) {
+    setTodos((cur) =>
+      cur.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
   return (
     <main className={`app ${mode}`}>
       <div className='container flex flex-col p-5 gap-5  lg:w-[36rem]'>
         <Header mode={mode} onToggleMode={handleToggleMode} />
         <Form onAddTodo={handleAddTodo} />
         <section className='flex flex-col rounded-md overflow-hidden'>
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onToggleComplete={handleToggleComplete} />
           <Actions />
         </section>
         <Footer />
@@ -65,6 +55,7 @@ function Form({ onAddTodo }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!name) return;
 
     const newTodo = {
       id: crypto.randomUUID(),
@@ -89,24 +80,32 @@ function Form({ onAddTodo }) {
   );
 }
 
-function TodoList({ todos }) {
+function TodoList({ todos, onToggleComplete }) {
   return (
     <ul className='todo-list'>
       {todos.map((todo) => (
-        <TodoItem completed={todo.completed} id={todo.id}>
-          {todo.name}
-        </TodoItem>
+        <TodoItem
+          todo={todo}
+          onToggleComplete={onToggleComplete}
+          key={todo.id}
+        />
       ))}
     </ul>
   );
 }
 
-function TodoItem({ id, completed, children }) {
+function TodoItem({ onToggleComplete, todo }) {
   return (
-    <li className={`todo-item ${completed ? 'completed' : ''}`}>
-      <input type='checkbox' value={completed} id={id} className='hidden' />
-      <label className='circle' htmlFor={id}></label>
-      <p>{children}</p>
+    <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+      <input
+        type='checkbox'
+        value={todo.completed}
+        onChange={() => onToggleComplete(todo.id)}
+        id={todo.id}
+        className='hidden'
+      />
+      <label className='circle' htmlFor={todo.id}></label>
+      <p>{todo.name}</p>
       <button className='delete-btn'>&times;</button>
     </li>
   );

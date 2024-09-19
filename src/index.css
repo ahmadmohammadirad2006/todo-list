@@ -89,7 +89,7 @@
     @apply hover:text-very-dark-blue;
   }
   .filters {
-    @apply flex gap-5 justify-center absolute top-20 mt-2 left-0 w-full p-4 rounded-md sm:static sm:rounded-none sm:p-0 sm:w-auto;
+    @apply flex gap-5 justify-center absolute top-20 mt-2 left-0 w-full p-4 rounded-md sm:mt-0 sm:static sm:rounded-none sm:p-0 sm:w-auto;
   }
   .dark .filters,
   .dark .actions {
