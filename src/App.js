@@ -20,13 +20,21 @@ function App() {
     );
   }
 
+  function handleDeleteTodo(id) {
+    setTodos((cur) => cur.filter((todo) => todo.id !== id));
+  }
+
   return (
     <main className={`app ${mode}`}>
       <div className='container flex flex-col p-5 gap-5  lg:w-[36rem]'>
         <Header mode={mode} onToggleMode={handleToggleMode} />
         <Form onAddTodo={handleAddTodo} />
         <section className='flex flex-col rounded-md overflow-hidden'>
-          <TodoList todos={todos} onToggleComplete={handleToggleComplete} />
+          <TodoList
+            todos={todos}
+            onToggleComplete={handleToggleComplete}
+            onDeleteTodo={handleDeleteTodo}
+          />
           <Actions />
         </section>
         <Footer />
@@ -80,13 +88,14 @@ function Form({ onAddTodo }) {
   );
 }
 
-function TodoList({ todos, onToggleComplete }) {
+function TodoList({ todos, onToggleComplete, onDeleteTodo }) {
   return (
     <ul className='todo-list'>
       {todos.map((todo) => (
         <TodoItem
           todo={todo}
           onToggleComplete={onToggleComplete}
+          onDeleteTodo={onDeleteTodo}
           key={todo.id}
         />
       ))}
@@ -94,7 +103,7 @@ function TodoList({ todos, onToggleComplete }) {
   );
 }
 
-function TodoItem({ onToggleComplete, todo }) {
+function TodoItem({ onToggleComplete, onDeleteTodo, todo }) {
   return (
     <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <input
@@ -106,7 +115,9 @@ function TodoItem({ onToggleComplete, todo }) {
       />
       <label className='circle' htmlFor={todo.id}></label>
       <p>{todo.name}</p>
-      <button className='delete-btn'>&times;</button>
+      <button className='delete-btn' onClick={() => onDeleteTodo(todo.id)}>
+        &times;
+      </button>
     </li>
   );
 }
