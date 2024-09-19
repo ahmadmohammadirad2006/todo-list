@@ -51,6 +51,15 @@
     @apply bg-[transparent] outline-none flex-grow;
   }
 
+  .todo-list {
+    @apply min-h-96;
+  }
+  .dark .todo-list {
+    @apply bg-dark-blue;
+  }
+  .light .todo-list {
+    @apply bg-white;
+  }
   .todo-item {
     @apply flex items-center gap-5 p-4  border-b;
   }

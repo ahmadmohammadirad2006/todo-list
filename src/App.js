@@ -19,19 +19,24 @@ const initialTodos = [
 ];
 
 function App() {
+  const [todos, setTodos] = useState([]);
   const [mode, setMode] = useState('light');
 
   function handleToggleMode() {
     setMode((cur) => (cur === 'light' ? 'dark' : 'light'));
   }
 
+  function handleAddTodo(todo) {
+    setTodos((cur) => [...cur, todo]);
+  }
+
   return (
     <main className={`app ${mode}`}>
       <div className='container flex flex-col p-5 gap-5  lg:w-[36rem]'>
         <Header mode={mode} onToggleMode={handleToggleMode} />
-        <Form />
+        <Form onAddTodo={handleAddTodo} />
         <section className='flex flex-col rounded-md overflow-hidden'>
-          <TodoList />
+          <TodoList todos={todos} />
           <Actions />
         </section>
         <Footer />
@@ -55,21 +60,39 @@ function Header({ mode, onToggleMode }) {
   );
 }
 
-function Form() {
+function Form({ onAddTodo }) {
+  const [name, setName] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newTodo = {
+      id: crypto.randomUUID(),
+      name,
+      completed: false,
+    };
+    onAddTodo(newTodo);
+    setName('');
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className='input-group'>
         <button className='circle'></button>
-        <input placeholder='Create a new todo...' />
+        <input
+          placeholder='Create a new todo...'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
     </form>
   );
 }
 
-function TodoList() {
+function TodoList({ todos }) {
   return (
     <ul className='todo-list'>
-      {initialTodos.map((todo) => (
+      {todos.map((todo) => (
         <TodoItem completed={todo.completed} id={todo.id}>
           {todo.name}
         </TodoItem>
