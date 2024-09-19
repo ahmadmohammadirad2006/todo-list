@@ -18,7 +18,7 @@ const initialTodos = [
 
 function App() {
   return (
-    <main className='app light'>
+    <main className='app dark'>
       <div className='container flex flex-col p-5 gap-5  lg:w-[36rem]'>
         <Header />
         <Form />
@@ -82,15 +82,13 @@ function TodoItem({ id, completed, children }) {
 function Actions() {
   return (
     <div className='actions'>
-      <div className='stats'>
-        <span>5 items left</span>
-        <button>Clear Completed</button>
-      </div>
+      <span>5 items left</span>
       <div className='filters'>
         <button className='active'>All</button>
         <button>Active</button>
         <button>Completed</button>
       </div>
+      <button>Clear Completed</button>
     </div>
   );
 }

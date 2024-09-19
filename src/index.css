@@ -66,7 +66,7 @@
   }
 
   .actions {
-    @apply flex flex-col gap-5 text-light-gray;
+    @apply text-base flex justify-between items-center mb-20 p-4 gap-5 rounded-b-md  text-light-gray relative sm:static sm:rounded-none sm:mb-0 md:text-sm;
   }
   .dark .actions button:not(.active) {
     @apply hover:text-very-light-gray;
@@ -74,18 +74,15 @@
   .light .actions button:not(.active) {
     @apply hover:text-very-dark-blue;
   }
-  .stats {
-    @apply flex justify-between items-center p-4  rounded-b-md;
-  }
   .filters {
-    @apply flex gap-5 justify-center p-4 rounded-md;
+    @apply flex gap-5 justify-center absolute top-20 left-0 w-full p-4 rounded-md sm:static sm:rounded-none sm:p-0 sm:w-auto;
   }
   .dark .filters,
-  .dark .stats {
+  .dark .actions {
     @apply bg-dark-blue;
   }
   .light .filters,
-  .light .stats {
+  .light .actions {
     @apply bg-white;
   }
   .active {
